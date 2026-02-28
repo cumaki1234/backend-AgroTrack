@@ -15,6 +15,8 @@ from pathlib import Path
 from datetime import timedelta
 
 import os
+import dj_database_url
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -120,18 +122,20 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+#DATABASES = {
+ #   'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+ #       'NAME': 'Huertos_DB2',
+ #       'USER': 'postgres',
+  #      'PASSWORD': '1234',
+  #      'HOST': 'localhost',
+   #     'PORT': '5432',
+    #}
+#}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Huertos_DB2',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
